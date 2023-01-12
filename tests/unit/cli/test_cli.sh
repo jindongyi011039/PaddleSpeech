@@ -69,6 +69,8 @@ paddlespeech tts --am fastspeech2_mix --voc hifigan_aishell3 --lang mix --input 
 paddlespeech tts --am fastspeech2_mix --voc pwgan_csmsc --lang mix --input "我们的声学模型使用了 Fast Speech Two, 声码器使用了 Parallel Wave GAN and Hifi GAN." --spk_id 175 --output mix_spk175_pwgan.wav
 paddlespeech tts --am fastspeech2_mix --voc hifigan_csmsc --lang mix --input "我们的声学模型使用了 Fast Speech Two, 声码器使用了 Parallel Wave GAN and Hifi GAN." --spk_id 175 --output mix_spk175.wav
 
+# mix add ssml
+paddlespeech tts --am fastspeech2_mix --lang mix --input "你好吗, 我们的声学模型使用了 Fast Speech Two, <speak>前浪<say-as pinyin='dao3'>倒</say-as>在沙滩上,沙滩上倒了一堆<say-as pinyin='tu3'>土</say-as>。 想象<say-as pinyin='gan1 gan1'>干干</say-as>的树干<say-as pinyin='dao3'>倒</say-as>了, 里面有个干尸，It's horrible! 不知是被谁<say-as pinyin='gan4'>干</say-as>死的。</speak>你很好。thank you." --spk_id 174 --output mix_spk174_ssml.wav
 
 # Speech Translation (only support linux)
 paddlespeech st --input ./en.wav
