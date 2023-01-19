@@ -21,7 +21,9 @@ def warm_up(engine_and_type: str, warm_up_time: int=3) -> bool:
     engine_pool = get_engine_pool()
 
     if "tts" in engine_and_type:
-        tts_engine = engine_pool['tts']
+        engine = engine_and_type.split("_")[0]
+        engine_type = engine_and_type.split("_")[1]
+        tts_engine = engine_pool[engine]
         flag_online = False
         if tts_engine.lang == 'zh':
             sentence = "您好，欢迎使用语音合成服务。"
@@ -33,14 +35,14 @@ def warm_up(engine_and_type: str, warm_up_time: int=3) -> bool:
             logger.error("tts engine only support lang: zh or en or mix.")
             sys.exit(-1)
 
-        if engine_and_type == "tts_python":
+        if engine_type == "python":
             from paddlespeech.server.engine.tts.python.tts_engine import PaddleTTSConnectionHandler
-        elif engine_and_type == "tts_inference":
+        elif engine_type == "inference":
             from paddlespeech.server.engine.tts.paddleinference.tts_engine import PaddleTTSConnectionHandler
-        elif engine_and_type == "tts_online":
+        elif engine_type == "online":
             from paddlespeech.server.engine.tts.online.python.tts_engine import PaddleTTSConnectionHandler
             flag_online = True
-        elif engine_and_type == "tts_online-onnx":
+        elif engine_type == "online-onnx":
             from paddlespeech.server.engine.tts.online.onnx.tts_engine import PaddleTTSConnectionHandler
             flag_online = True
         else:
