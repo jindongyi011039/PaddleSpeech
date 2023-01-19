@@ -23,46 +23,46 @@ class EngineFactory(object):
     def get_engine(engine_name: Text, engine_type: Text):
         logger.info(f"{engine_name} : {engine_type} engine.")
 
-        if engine_name == 'asr' and engine_type == 'inference':
+        if engine_name.lower().startswith('asr') and engine_type == 'inference':
             from paddlespeech.server.engine.asr.paddleinference.asr_engine import ASREngine
             return ASREngine()
-        elif engine_name == 'asr' and engine_type == 'python':
+        elif engine_name.lower().startswith('asr') and engine_type == 'python':
             from paddlespeech.server.engine.asr.python.asr_engine import ASREngine
             return ASREngine()
-        elif engine_name == 'asr' and engine_type == 'online':
+        elif engine_name.lower().startswith('asr') and engine_type == 'online':
             from paddlespeech.server.engine.asr.online.python.asr_engine import ASREngine
             return ASREngine()
-        elif engine_name == 'asr' and engine_type == 'online-inference':
+        elif engine_name.lower().startswith('asr') and engine_type == 'online-inference':
             from paddlespeech.server.engine.asr.online.paddleinference.asr_engine import ASREngine
             return ASREngine()
-        elif engine_name == 'asr' and engine_type == 'online-onnx':
+        elif engine_name.lower().startswith('asr') and engine_type == 'online-onnx':
             from paddlespeech.server.engine.asr.online.onnx.asr_engine import ASREngine
             return ASREngine()
-        elif engine_name == 'tts' and engine_type == 'inference':
+        elif engine_name.lower().startswith('tts') and engine_type == 'inference':
             from paddlespeech.server.engine.tts.paddleinference.tts_engine import TTSEngine
             return TTSEngine()
-        elif engine_name == 'tts' and engine_type == 'python':
+        elif engine_name.lower().startswith('tts') and engine_type == 'python':
             from paddlespeech.server.engine.tts.python.tts_engine import TTSEngine
             return TTSEngine()
-        elif engine_name == 'tts' and engine_type == 'online':
+        elif engine_name.lower().startswith('tts') and engine_type == 'online':
             from paddlespeech.server.engine.tts.online.python.tts_engine import TTSEngine
             return TTSEngine()
-        elif engine_name == 'tts' and engine_type == 'online-onnx':
+        elif engine_name.lower().startswith('tts') and engine_type == 'online-onnx':
             from paddlespeech.server.engine.tts.online.onnx.tts_engine import TTSEngine
             return TTSEngine()
-        elif engine_name == 'cls' and engine_type == 'inference':
+        elif engine_name.lower().startswith('cls') and engine_type == 'inference':
             from paddlespeech.server.engine.cls.paddleinference.cls_engine import CLSEngine
             return CLSEngine()
-        elif engine_name == 'cls' and engine_type == 'python':
+        elif engine_name.lower().startswith('cls') and engine_type == 'python':
             from paddlespeech.server.engine.cls.python.cls_engine import CLSEngine
             return CLSEngine()
-        elif engine_name.lower() == 'text' and engine_type.lower() == 'python':
+        elif engine_name.lower().startswith('text') and engine_type.lower() == 'python':
             from paddlespeech.server.engine.text.python.text_engine import TextEngine
             return TextEngine()
-        elif engine_name.lower() == 'vector' and engine_type.lower() == 'python':
+        elif engine_name.lower().startswith('vector') and engine_type.lower() == 'python':
             from paddlespeech.server.engine.vector.python.vector_engine import VectorEngine
             return VectorEngine()
-        elif engine_name.lower() == 'acs' and engine_type.lower() == 'python':
+        elif engine_name.lower().startswith('acs') and engine_type.lower() == 'python':
             from paddlespeech.server.engine.acs.python.acs_engine import ACSEngine
             return ACSEngine()
         else:

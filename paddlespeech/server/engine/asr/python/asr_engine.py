@@ -73,7 +73,8 @@ class ASREngine(BaseEngine):
             sample_rate=self.config.sample_rate,
             cfg_path=self.config.cfg_path,
             decode_method=self.config.decode_method,
-            ckpt_path=self.config.ckpt_path)
+            ckpt_path=self.config.ckpt_path,
+            codeswitch=self.config.codeswitch)
 
         logger.info("Initialize ASR server engine successfully on device: %s." %
                     (self.device))

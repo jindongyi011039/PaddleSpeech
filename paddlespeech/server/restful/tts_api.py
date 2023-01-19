@@ -73,6 +73,7 @@ def tts(request_body: TTSRequest):
     volume = request_body.volume
     sample_rate = request_body.sample_rate
     save_path = request_body.save_path
+    task = request_body.task
 
     # Check parameters
     if speed <= 0 or speed > 3:
@@ -97,8 +98,17 @@ def tts(request_body: TTSRequest):
     try:
         # get single engine from engine pool
         engine_pool = get_engine_pool()
-        tts_engine = engine_pool['tts']
-        logger.info("Get tts engine successfully.")
+        global tts_engine
+        if task is not None:
+            tts_engine = engine_pool[task]
+            if tts_engine is None:
+                return failed_response(
+                    ErrorCode.SERVER_PARAM_ERR,
+                    "invalid task, ")
+            logger.info("Get tts engine [{}] successfully.".format(task))
+        else:
+            tts_engine = engine_pool['tts']
+            logger.info("Get tts engine [tts] successfully.")
 
         if tts_engine.engine_type == "python":
             from paddlespeech.server.engine.tts.python.tts_engine import PaddleTTSConnectionHandler

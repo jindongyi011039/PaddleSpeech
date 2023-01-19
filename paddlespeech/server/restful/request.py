@@ -66,6 +66,7 @@ class TTSRequest(BaseModel):
     volume: float = 1.0
     sample_rate: int = 0
     save_path: str = None
+    task: str = "tts"
 
 
 #****************************************************************************************/

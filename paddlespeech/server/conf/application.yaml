@@ -9,7 +9,7 @@ port: 8090
 # The task format in the engin_list is: <speech task>_<engine type>
 # task choices = ['asr_python', 'asr_inference', 'tts_python', 'tts_inference', 'cls_python', 'cls_inference']
 protocol: 'http'
-engine_list: ['asr_python', 'tts_python', 'cls_python', 'text_python', 'vector_python']
+engine_list: ['asr_python', 'tts_python', 'tts-male_python', 'tts-mix_python', 'cls_python', 'text_python', 'vector_python']
 
 
 #################################################################################
@@ -28,6 +28,7 @@ asr_python:
     num_decoding_left_chunks: -1
     force_yes: True
     device:  # set 'gpu:id' or 'cpu'
+    codeswitch: False # codeswitch is true in zh_en model
 
 
 ################### speech task: asr; engine_type: inference #######################
@@ -76,6 +77,53 @@ tts_python:
     lang: 'zh'
     device:  # set 'gpu:id' or 'cpu'
 
+tts-male_python: 
+    # am (acoustic model) choices=['speedyspeech_csmsc', 'fastspeech2_csmsc', 
+    #                              'fastspeech2_ljspeech', 'fastspeech2_aishell3',
+    #                              'fastspeech2_vctk', 'fastspeech2_male']        
+    am: 'fastspeech2_male'
+    am_config: 
+    am_ckpt: 
+    am_stat: 
+    phones_dict: 
+    tones_dict: 
+    speaker_dict: 
+    spk_id: 0
+
+    # voc (vocoder) choices=['pwgan_csmsc', 'pwgan_ljspeech', 'pwgan_aishell3',
+    #                        'pwgan_vctk', 'mb_melgan_csmsc', 'pwgan_male']
+    voc: 'pwgan_male'
+    voc_config: 
+    voc_ckpt: 
+    voc_stat: 
+
+    # others
+    lang: 'zh'
+    device:  # set 'gpu:id' or 'cpu'
+
+tts-mix_python: 
+    # am (acoustic model) choices=['speedyspeech_csmsc', 'fastspeech2_csmsc', 
+    #                              'fastspeech2_ljspeech', 'fastspeech2_aishell3',
+    #                              'fastspeech2_vctk']        
+    am: 'fastspeech2_mix'
+    am_config: 
+    am_ckpt: 
+    am_stat: 
+    phones_dict: 
+    tones_dict: 
+    speaker_dict: 
+    spk_id: 174
+
+    # voc (vocoder) choices=['pwgan_csmsc', 'pwgan_ljspeech', 'pwgan_aishell3',
+    #                        'pwgan_vctk', 'mb_melgan_csmsc']
+    voc: 'pwgan_csmsc'
+    voc_config: 
+    voc_ckpt: 
+    voc_stat: 
+
+    # others
+    lang: 'mix'
+    device:  # set 'gpu:id' or 'cpu'
 
 ################### speech task: tts; engine_type: inference #######################
 tts_inference:
