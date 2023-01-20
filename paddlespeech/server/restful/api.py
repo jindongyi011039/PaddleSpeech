@@ -36,7 +36,7 @@ def setup_router(api_list: List):
         APIRouter
     """
     for api_name in api_list:
-        if api_name.lower() == 'asr':
+        if api_name.lower().startswith('asr'):
             _router.include_router(asr_router)
         elif api_name.lower().startswith('tts'):
             _router.include_router(tts_router)
