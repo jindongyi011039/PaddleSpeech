@@ -98,6 +98,7 @@ def tts(request_body: TTSRequest):
     try:
         # get single engine from engine pool
         engine_pool = get_engine_pool()
+        logger.info("engine pool:{}".format(engine_pool))
         global tts_engine
         if task is not None:
             tts_engine = engine_pool[task]
