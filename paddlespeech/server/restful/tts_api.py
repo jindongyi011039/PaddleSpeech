@@ -106,6 +106,8 @@ def tts(request_body: TTSRequest):
                     ErrorCode.SERVER_PARAM_ERR,
                     "invalid task, ")
             logger.info("Get tts engine [{}] successfully.".format(task))
+            logger.info("engine config:{}".format(tts_engine.config))
+            logger.info("engine lang:{}".format(tts_engine.lang))
         else:
             tts_engine = engine_pool['tts']
             logger.info("Get tts engine [tts] successfully.")
