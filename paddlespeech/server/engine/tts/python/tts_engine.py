@@ -93,6 +93,8 @@ class TTSEngine(BaseEngine):
 
         logger.info("Initialize TTS server engine successfully on device: %s." %
                     (self.device))
+        logger.info("engine config:{}".format(self.config))
+        logger.info("engine lang:{}".format(self.lang))
         return True
 
 
