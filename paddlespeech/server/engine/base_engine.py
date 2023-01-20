@@ -16,12 +16,50 @@ from typing import Union
 
 from pattern_singleton import Singleton
 
-__all__ = ['BaseEngine']
+__all__ = ['BaseEngine', 'BaseNormalEngine']
 
 
 class BaseEngine(metaclass=Singleton):
     """
         An base engine class
+    """
+
+    def __init__(self):
+        self._inputs = dict()
+        self._outputs = dict()
+
+    def init(self, *args, **kwargs):
+        """
+        init the engine
+        
+        Returns:
+            bool: true or false
+        """
+        pass
+
+    def postprocess(self, *args, **kwargs) -> Union[str, os.PathLike]:
+        """
+        Output postprocess and return results.
+        This method get model output from self._outputs and convert it into human-readable results.
+
+        Returns:
+            Union[str, os.PathLike]: Human-readable results such as texts and audio files.
+        """
+        pass
+
+    def run(self, *args, **kwargs) -> Union[str, os.PathLike]:
+        """
+        Output postprocess and return results.
+        This method get model output from self._outputs and convert it into human-readable results.
+
+        Returns:
+            Union[str, os.PathLike]: Human-readable results such as texts and audio files.
+        """
+        pass
+
+class BaseNormalEngine():
+    """
+        An base engine class, not singleton
     """
 
     def __init__(self):
