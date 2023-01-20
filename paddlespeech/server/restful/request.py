@@ -40,6 +40,7 @@ class ASRRequest(BaseModel):
     sample_rate: int
     lang: str
     punc: Optional[bool] = None
+    task: str = "asr"
 
 
 #****************************************************************************************/

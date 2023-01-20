@@ -65,10 +65,21 @@ def asr(request_body: ASRRequest):
     """
     try:
         audio_data = base64.b64decode(request_body.audio)
+        task = request_body.task
 
         # get single engine from engine pool
         engine_pool = get_engine_pool()
-        asr_engine = engine_pool['asr']
+        global asr_engine
+        if task is not None:
+            asr_engine = engine_pool[task]
+            if asr_engine is None:
+                return failed_response(
+                    ErrorCode.SERVER_PARAM_ERR,
+                    "invalid task, ")
+            logger.info("Get asr engine [{}] successfully.".format(task))
+        else:
+            asr_engine = engine_pool['asr']
+            logger.info("Get asr engine [asr] successfully.")
 
         if asr_engine.engine_type == "python":
             from paddlespeech.server.engine.asr.python.asr_engine import PaddleASRConnectionHandler

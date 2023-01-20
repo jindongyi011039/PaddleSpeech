@@ -23,7 +23,7 @@ import soundfile as sf
 
 from paddlespeech.cli.log import logger
 from paddlespeech.cli.tts.infer import TTSExecutor
-from paddlespeech.server.engine.base_engine import BaseNormalEngine
+from paddlespeech.server.engine.base_engine import BaseEngine
 from paddlespeech.server.utils.audio_process import change_speed
 from paddlespeech.server.utils.errors import ErrorCode
 from paddlespeech.server.utils.exception import ServerBaseException
@@ -37,11 +37,11 @@ class TTSServerExecutor(TTSExecutor):
         pass
 
 
-class TTSEngine(BaseNormalEngine):
+class TTSEngine(BaseEngine):
     """TTS server engine
 
     Args:
-        metaclass: Defaults to Singleton. ***changed, not singleton
+        metaclass: Defaults to Singleton.
     """
 
     def __init__(self, name=None):
