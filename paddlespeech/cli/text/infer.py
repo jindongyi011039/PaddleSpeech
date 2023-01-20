@@ -204,7 +204,7 @@ class TextExecutor(BaseExecutor):
 
     def _clean_text(self, text):
         text = text.lower()
-        text = re.sub('[^A-Za-z0-9\u4e00-\u9fa5]', '', text)
+        text = re.sub('[^A-Za-z0-9 \u4e00-\u9fa5]', '', text)
         text = re.sub(f'[{"".join([p for p in self._punc_list][1:])}]', '',
                       text)
         return text
